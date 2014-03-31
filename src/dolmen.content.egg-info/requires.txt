@@ -1,0 +1,8 @@
+crom
+grokker
+setuptools
+cromlech.content
+zope.interface
+zope.schema
+
+[test]
