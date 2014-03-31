@@ -54,7 +54,7 @@ def date_parser(request, date, tz=PARIS, size='medium'):
     formatter = locale.dates.getFormatter(date, size)
     # this can raise a zope.i18n.format.DateTimeParseError
     try:
-        date = date.astimezone(tz))
+        date = date.astimezone(tz)
     except ValueError:
         tzed = date.replace(tzinfo=BASE)
         date = tzed.astimezone(tz)
