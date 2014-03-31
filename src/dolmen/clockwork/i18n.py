@@ -49,6 +49,19 @@ def date_localizer(request, date, tz=PARIS, fmt='dateTime', size='medium'):
     return format_from_locale(locale, date, tz, fmt, size)
 
 
+def date_parser(request, date, tz=PARIS, size='medium'):
+    locale = ILocale(request)
+    formatter = locale.dates.getFormatter(date, size)
+    # this can raise a zope.i18n.format.DateTimeParseError
+    try:
+        date = date.astimezone(tz))
+    except ValueError:
+        tzed = date.replace(tzinfo=BASE)
+        date = tzed.astimezone(tz)
+
+    return formatter.parse(date)
+
+
 def date_formatter(request, date, formatter=base_format):
     # This needs a lot more work.
     locale = ILocale(request)
