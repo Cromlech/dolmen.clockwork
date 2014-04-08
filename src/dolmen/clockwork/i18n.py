@@ -33,6 +33,20 @@ def date_formatter(request, date, size='short'):
     return formatter.format(date)
 
 
+def time_parser(request, time, size='short'):
+    language = ILanguage(request, None)
+    locale = locales.getLocale(language=language)
+    formatter = locale.dates.getFormatter('time', length=size)
+    return formatter.parse(time)
+
+
+def time_formatter(request, time, size='short'):
+    language = ILanguage(request, None)
+    locale = locales.getLocale(language=language)
+    formatter = locale.dates.getFormatter('time', length=size)
+    return formatter.format(time)
+
+
 def sortable_date_format(date, tz=PARIS, fmt=DATETIME_SHORT):
     """
     @date : the date object, naive or not.
