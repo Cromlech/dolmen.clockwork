@@ -10,6 +10,7 @@ history = open(join('docs', 'HISTORY.txt')).read()
 
 
 install_requires = [
+    'cromlech.i18n',
     'zope.i18n',
     'zope.interface',
     ]
