@@ -4,8 +4,6 @@ import datetime
 import pytz
 from cromlech.i18n import ILanguage
 from zope.i18n.locales import LocaleFormat, locales
-from zope.i18n.interfaces.locales import ILocale
-from zope.i18n.format import DateTimeFormat
 
 
 BASE = pytz.utc
