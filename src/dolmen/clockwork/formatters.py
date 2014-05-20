@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from grokcore.component import Adapter, context, provides
+from grokcore.component import Adapter, context, provides, name
 from cromlech.browser import IRequest
 from .i18n import date_formatter, date_parser
+from .i18n import datetime_formatter, datetime_parser
 from .i18n import time_formatter, time_parser
 from .interfaces import IFormDateManager, IFormTimeManager
 
 
-class IDefaultFormDateManager(Adapter):
+class DefaultFormDateManager(Adapter):
+    name('date')
     context(IRequest)
     provides(IFormDateManager)
 
@@ -18,7 +20,19 @@ class IDefaultFormDateManager(Adapter):
         return date_parser(self.context, value)
 
 
-class IDefaultFormTimeManager(Adapter):
+class DefaultFormDatetimeManager(Adapter):
+    name('dateTime')
+    context(IRequest)
+    provides(IFormDateManager)
+
+    def format(self, value):
+        return datetime_formatter(self.context, value)
+
+    def parse(self, value):
+        return datetime_parser(self.context, value)
+
+    
+class DefaultFormTimeManager(Adapter):
     context(IRequest)
     provides(IFormTimeManager)
 

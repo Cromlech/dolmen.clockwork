@@ -31,6 +31,20 @@ def date_formatter(request, date, size='short'):
     return formatter.format(date)
 
 
+def datetime_parser(request, date, size='short'):
+    language = ILanguage(request, None)
+    locale = locales.getLocale(language=language)
+    formatter = locale.dates.getFormatter('dateTime', length=size)
+    return formatter.parse(date)
+
+
+def datetime_formatter(request, date, size='short'):
+    language = ILanguage(request, None)
+    locale = locales.getLocale(language=language)
+    formatter = locale.dates.getFormatter('dateTime', length=size)
+    return formatter.format(date)
+
+
 def time_parser(request, time, size='short'):
     language = ILanguage(request, None)
     locale = locales.getLocale(language=language)
