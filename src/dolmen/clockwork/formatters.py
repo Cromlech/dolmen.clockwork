@@ -12,32 +12,35 @@ class DefaultFormDateManager(Adapter):
     name('date')
     context(IRequest)
     provides(IFormDateManager)
+    size = "short"
 
     def format(self, value):
-        return date_formatter(self.context, value)
+        return date_formatter(self.context, value, self.size)
 
     def parse(self, value):
-        return date_parser(self.context, value)
+        return date_parser(self.context, value, self.size)
 
 
 class DefaultFormDatetimeManager(Adapter):
     name('dateTime')
     context(IRequest)
     provides(IFormDateManager)
+    size = "short"
 
     def format(self, value):
-        return datetime_formatter(self.context, value)
+        return datetime_formatter(self.context, value, self.size)
 
     def parse(self, value):
-        return datetime_parser(self.context, value)
+        return datetime_parser(self.context, value, self.size)
 
-    
+
 class DefaultFormTimeManager(Adapter):
     context(IRequest)
     provides(IFormTimeManager)
+    size = "short"
 
     def format(self, value):
-        return time_formatter(self.context, value)
+        return time_formatter(self.context, value, self.size)
 
     def parse(self, value):
-        return time_parser(self.context, value)
+        return time_parser(self.context, value, self.size)
